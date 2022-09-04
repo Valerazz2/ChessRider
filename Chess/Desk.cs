@@ -1,4 +1,5 @@
 
+using System;
 using Chess;
 
 public class Desk
@@ -7,58 +8,42 @@ public class Desk
     
     public Tile[,] desk = new Tile[deskSizeX, deskSizeY];
 
-    private Figure[,] figuresSpots/* =
-    {
-        {new Ladja(this), new Horse(this), new Slon(this), new Ferz(this),
-            new King(this), new Slon(this), new Horse(this), new Ladja(this)},
-        {new Peshka(this), new Peshka(this), new Peshka(this), new Peshka(this), 
-            new Peshka(this), new Peshka(this), new Peshka(this), new Peshka(this)},
-        {null, null, null, null, null, null, null, null},
-        {null, null, null, null, null, null, null, null},
-        {null, null, null, null, null, null, null, null},
-        {null, null, null, null, null, null, null, null},
-        {null, null, null, null, null, null, null, null},
-        {new Peshka(this), new Peshka(this), new Peshka(this), new Peshka(this), 
-            new Peshka(this), new Peshka(this), new Peshka(this), new Peshka(this)},
-        {new Ladja(this), new Horse(this), new Slon(this), new Ferz(this), 
-            new King(this), new Slon(this), new Horse(this), new Ladja(this)},
-    }*/;
+    private Figure[,] figuresSpots = new Figure[8,8];
 
-    private void CreateMap()
+    public void CreateMap()
     {
+        figuresSpots = new Figure[,]
+        {
+            {new Ladja(this), new Horse(this), new Slon(this), new Ferz(this), new King(this), new Slon(this), new Horse(this), new Ladja(this)},
+            {new Peshka(this), new Peshka(this), new Peshka(this), new Peshka(this), new Peshka(this), new Peshka(this), new Peshka(this), new Peshka(this)},
+            {null, null, null, null, null, null, null, null},
+            {null, null, null, null, null, null, null, null},
+            {null, null, null, null, null, null, null, null},
+            {null, null, null, null, null, null, null, null},
+            {new Peshka(this), new Peshka(this), new Peshka(this), new Peshka(this), new Peshka(this), new Peshka(this), new Peshka(this), new Peshka(this)},
+            {new Ladja(this), new Horse(this), new Slon(this), new Ferz(this), new King(this), new Slon(this), new Horse(this), new Ladja(this)}
+        };
+        
         for (int x = 0; x < deskSizeX; x++)
         {
             for (int y = 0; y < deskSizeY; y++)
             {
                 desk[x, y] = new Tile(x, y, (x + y)  % 2 == 0 ? "black" : "white", figuresSpots[x, y]);
+                if (figuresSpots[x, y] != null)
+                {
+                    figuresSpots[x, y].ownTile = desk[x, y];
+                }
             }
         }
-        figuresSpots =
-    {
-        {new Ladja(this), new Horse(this), new Slon(this), new Ferz(this),
-            new King(this), new Slon(this), new Horse(this), new Ladja(this)},
-        {new Peshka(this), new Peshka(this), new Peshka(this), new Peshka(this), 
-            new Peshka(this), new Peshka(this), new Peshka(this), new Peshka(this)},
-        {null, null, null, null, null, null, null, null},
-        {null, null, null, null, null, null, null, null},
-        {null, null, null, null, null, null, null, null},
-        {null, null, null, null, null, null, null, null},
-        {null, null, null, null, null, null, null, null},
-        {new Peshka(this), new Peshka(this), new Peshka(this), new Peshka(this), 
-            new Peshka(this), new Peshka(this), new Peshka(this), new Peshka(this)},
-        {new Ladja(this), new Horse(this), new Slon(this), new Ferz(this), 
-            new King(this), new Slon(this), new Horse(this), new Ladja(this)},
-    }
     }
 
-    public Figure GetFigureAt(string e2)
+    public Figure GetFigureAt(int x, int y)
     {
-        throw new System.NotImplementedException();
+        return desk[y, x].GetFigure();
     }
 
-    public Tile GetTileAt(string coordinats)
+    public Tile GetTileAt(int x, int y)
     {
-        int x =  coordinats[0] - 'a';
-        return desk[x, coordinats[1]];
+        return desk[y, x];
     }
 }

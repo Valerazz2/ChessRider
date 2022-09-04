@@ -20,7 +20,7 @@ public class Tile
 
     public string GetRef()
     {
-        return (char)(posX + 'a') + posY.ToString();
+        return posX.ToString() + posY.ToString();
     }
 
     public Figure GetFigure()

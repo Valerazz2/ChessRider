@@ -6,17 +6,17 @@ public abstract class Figure : DeskObj
 {
     protected string color;
     protected FigureType _figureType;
-    protected Tile ownTile;
+    public Tile ownTile;
     private Desk _desk;
     
-    public abstract void MoveTo(string coordinates);
+    public abstract void MoveTo(int x, int y);
     public abstract FigureType GetFigureType();
+    public abstract bool AbleMoveTo(int x, int y);
 
     public Tile GetOwnTile()
     {
         return ownTile;
     }
 
-    protected Figure(Desk getDesk) : base(getDesk)
-    { }
+    protected Figure(Desk getDesk) : base(getDesk) {}
 }

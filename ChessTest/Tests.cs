@@ -11,12 +11,13 @@ namespace ChessTest
         public void Test1()
         {
             var desk = new Desk();
-            var figure = desk.GetFigureAt("e2");
+            desk.CreateMap();
+            var figure = desk.GetFigureAt(3,1);
             Assert.True(figure != null);
             Assert.True(figure.GetFigureType() == FigureType.Peshka);
-            figure.MoveTo("e4");
-            Assert.Equals(figure.GetOwnTile().GetRef(), "e4");
-            Assert.True(desk.GetTileAt("e2").GetFigure() == null);
+            figure.MoveTo(3,4);
+            Assert.True(figure.GetOwnTile().GetRef() == "43");
+            Assert.True(desk.GetTileAt(3, 1).GetFigure() == null);
         }
     }
 

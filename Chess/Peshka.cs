@@ -5,10 +5,11 @@ using Chess;
 public class Peshka : Figure
 {
     private bool wasMoved;
-    public override void MoveTo(string coordinates)
+    public override void MoveTo(int x, int y)
     {
         ownTile.currentFigure = null;
-        Desk.desk[coordinates[0] - 'a', coordinates[1]].currentFigure = this;
+        Desk.desk[y, x].currentFigure = this;
+        ownTile = Desk.desk[y, x];
     }
 
     public override FigureType GetFigureType()
@@ -16,7 +17,10 @@ public class Peshka : Figure
         return FigureType.Peshka;
     }
 
-    public Peshka(Desk getDesk) : base(getDesk)
+    public override bool AbleMoveTo(int x, int y)
     {
+        throw new System.NotImplementedException();
     }
+
+    public Peshka(Desk getDesk) : base(getDesk) { }
 }

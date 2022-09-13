@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using Chess;
 
 public abstract class Figure : DeskObj
 {
-    protected string color;
-    protected FigureType _figureType;
+    
+    public FigureColor color;
     public Tile ownTile;
     private Desk _desk;
-    
     public abstract void MoveTo(int x, int y);
     public abstract FigureType GetFigureType();
     public abstract bool AbleMoveTo(int x, int y);

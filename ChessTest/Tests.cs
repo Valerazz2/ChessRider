@@ -12,12 +12,23 @@ namespace ChessTest
         {
             var desk = new Desk();
             desk.CreateMap();
-            var figure = desk.GetFigureAt(3,1);
-            Assert.True(figure != null);
+            var figure = desk.GetFigureAt(0, 7);
+            Assert.True(figure.color == FigureColor.White);
+            Assert.True(figure.GetFigureType() == FigureType.Ladja);
+            Assert.True(!figure.AbleMoveTo(0,5));
+            figure = desk.GetFigureAt(0, 6);
             Assert.True(figure.GetFigureType() == FigureType.Peshka);
-            figure.MoveTo(3,4);
-            Assert.True(figure.GetOwnTile().GetRef() == "43");
-            Assert.True(desk.GetTileAt(3, 1).GetFigure() == null);
+            Assert.True(figure.AbleMoveTo(0, 4));
+            figure.MoveTo(0,4);
+            figure = desk.GetFigureAt(0, 7);
+            Assert.True(figure.GetFigureType() == FigureType.Ladja);
+            Assert.True(figure.AbleMoveTo(0,5));
+            figure.MoveTo(0,5);
+            figure.MoveTo(4,5);
+            Assert.True(figure.ownTile.GetRef() == "45");
+            Assert.True(figure.AbleMoveTo(4,1));
+            Assert.True(!figure.AbleMoveTo(4,0));
+            
         }
     }
 

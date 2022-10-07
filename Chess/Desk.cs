@@ -28,7 +28,7 @@ public class Desk
         {
             for (int y = 0; y < deskSizeY; y++)
             {
-                desk[x, y] = new Tile(x, y, (x + y)  % 2 == 0 ? FigureColor.Black : FigureColor.White, figuresSpots[x, y]);
+                desk[x, y] = new Tile(new Vector2Int(x, y), (x + y)  % 2 == 0 ? FigureColor.Black : FigureColor.White, figuresSpots[x, y]);
                 if (figuresSpots[x, y] != null)
                 {
                     figuresSpots[x, y].ownTile = desk[x, y];

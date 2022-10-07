@@ -7,56 +7,39 @@ public class Peshka : Figure
 {
     private bool wasMoved;
     
-    public override void MoveTo(int x, int y)
-    {
-        if (AbleMoveTo(x, y) || AbleEat(x, y))
-        {
-            ownTile.currentFigure = null;
-            Desk.desk[x, y].currentFigure = this;
-            ownTile = Desk.desk[x, y];
-            wasMoved = true;
-        }
-    }
-
     public override FigureType GetFigureType()
     {
         return FigureType.Peshka;
     }
 
-    public override bool AbleMoveTo(int x, int y)
+    public override bool AbleMoveTo(Tile target)
     {
-        if (Desk.desk[x, y].currentFigure != null)
-            return false;
-        
-        if (MoveIsForward(color, x, y))
+        if (MoveIsForward(target) && target.currentFigure == null
+            || AbleEat(target))
         {
             return true;
         }
         return false;
     }
 
-    private bool MoveIsForward(FigureColor getColor, int getX, int getY)
+    private bool MoveIsForward(Tile targetTile)
     {
-        int distY = getY - ownTile.posY;
-        if (Math.Abs(distY) == 2 && !wasMoved)
-            distY /= 2;
-        
-        if (getColor == FigureColor.Black && getX - ownTile.posX == 0 && distY == 1)
+        var step = ownTile.pos.GetStep(targetTile.pos);
+        if (color == FigureColor.Black && step == new Vector2Int(0, 1)
+            || color == FigureColor.White && step == new Vector2Int(0, -1))
         {
             return true;
         }
-        if (getColor == FigureColor.White && getX - ownTile.posX == 0 && distY == -1)
-        {
-            return true;
-        }
+
         return false;
     }
-    
-    public bool AbleEat(int x, int y)
+
+    public bool AbleEat(Tile targetTile)
     {
-        if (Desk.GetFigureAt(x, y) != null && Desk.desk[x, y].currentFigure.color != color && Math.Abs(x - ownTile.posX) == 1)
+        Vector2Int dist = Vector2Int.Distance(targetTile.pos, ownTile.pos);
+        if (targetTile.currentFigure != null && Math.Abs(dist.X) == 1 && targetTile.currentFigure.color != color)
         {
-            if (color == FigureColor.Black && y - ownTile.posY == 1 || color == FigureColor.White && y - ownTile.posY == -1)
+            if (color == FigureColor.Black && dist.Y == 1 || color == FigureColor.White && dist.Y == -1)
             {
                 return true;
             }

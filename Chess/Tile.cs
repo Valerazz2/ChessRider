@@ -4,14 +4,13 @@ using Chess;
 
 public class Tile
 {
-    public int posX, posY;
+    public Vector2Int pos;
     public FigureColor color;
     public Figure currentFigure;
     
-    public Tile(int X, int Y, FigureColor getColor, Figure figure)
+    public Tile(Vector2Int getPos, FigureColor getColor, Figure figure)
     {
-        posX = X;
-        posY = Y;
+        pos = getPos;
         color = getColor;
         if (figure != null)
         {
@@ -19,9 +18,9 @@ public class Tile
         }
     }
 
-    public string GetRef()
+    public Vector2Int GetRef()
     {
-        return posX.ToString() + posY.ToString();
+        return pos;
     }
 
     public Figure GetFigure()

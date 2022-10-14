@@ -17,8 +17,8 @@ public class Desk
             {new Ladja(this), new Peshka(this), null, null, null, null, new Peshka(this), new Ladja(this)},
             {new Horse(this), new Peshka(this), null, null, null, null, new Peshka(this), new Horse(this)},
             {new Slon(this), new Peshka(this), null, null, null, null, new Peshka(this), new Slon(this)},
-            {new King(this), new Peshka(this), null, null, null, null, new Peshka(this), new King(this)},
             {new Ferz(this), new Peshka(this), null, null, null, null, new Peshka(this), new Ferz(this)},
+            {new King(this), new Peshka(this), null, null, null, null, new Peshka(this), new King(this)},
             {new Slon(this), new Peshka(this), null, null, null, null, new Peshka(this), new Slon(this)},
             {new Horse(this), new Peshka(this), null, null, null, null, new Peshka(this), new Horse(this)},
             {new Ladja(this), new Peshka(this), null, null, null, null, new Peshka(this), new Ladja(this)}

@@ -24,7 +24,8 @@ namespace Chess
                 }
             }
 
-            if (step.X == step.Y || step.Y == 0 && step.X != 0 || step.Y != 0 && step.X == 0)
+            var dist = Vector2Int.Distance(target.pos, ownTile.pos);
+            if (dist.X == dist.Y || dist.Y == 0 && dist.X != 0 || dist.Y != 0 && dist.X == 0)
             {
                 return CheckTile(target, color);
             }

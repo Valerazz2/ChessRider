@@ -9,7 +9,13 @@ namespace Chess
 
         public override bool AbleMoveTo(Tile target)
         {
-            throw new System.NotImplementedException();
+            var dist = Vector2Int.Distance(target.pos, ownTile.pos);
+            if (dist.X == 1 && dist.Y == 2 || dist.X == 2 && dist.Y == 1)
+            {
+                return CheckTile(target, color);
+            }
+
+            return false;
         }
 
         public Horse(Desk getDesk) : base(getDesk)
